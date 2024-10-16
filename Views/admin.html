@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css"> <!-- Your custom styles -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Library Management</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/admin">Admin Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user">User Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Admin Dashboard</h1>
+        
+        <div class="text-center mb-4">
+            <h2>Manage Users</h2>
+            <!-- Form to add a new user -->
+            <form action="/add-user" method="POST" class="mb-4">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <select name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit" class="btn btn-success">Add User</button>
+            </form>
+
+            <!-- Form to update an existing user -->
+            <form action="/update-user" method="POST">
+                <input type="hidden" name="userId" required>
+                <input type="text" name="username" placeholder="New Username" required>
+                <input type="password" name="password" placeholder="New Password" required>
+                <select name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit" class="btn btn-warning">Update User</button>
+            </form>
+        </div>
+
+        <div class="text-center mb-4">
+            <h2>Manage Books</h2>
+            <!-- Form to add a new book -->
+            <form action="/add-book" method="POST" class="mb-4">
+                <input type="text" name="title" placeholder="Book Title" required>
+                <input type="text" name="author" placeholder="Author" required>
+                <input type="number" name="publishedYear" placeholder="Published Year" required>
+                <button type="submit" class="btn btn-success">Add Book</button>
+            </form>
+
+            <!-- Form to update an existing book -->
+            <form action="/update-book" method="POST">
+                <input type="hidden" name="bookId" required>
+                <input type="text" name="title" placeholder="New Title" required>
+                <input type="text" name="author" placeholder="New Author" required>
+                <input type="number" name="publishedYear" placeholder="New Published Year" required>
+                <button type="submit" class="btn btn-warning">Update Book</button>
+            </form>
+        </div>
+
+        <div class="text-center mb-4">
+            <h2>Transaction Management</h2>
+            <!-- Form to issue a book -->
+            <form action="/issue-book" method="POST" class="mb-4">
+                <select name="userId" required>
+                    <!-- Populate this with user options from the database -->
+                    <option value="">Select User</option>
+                </select>
+                <select name="bookId" required>
+                    <!-- Populate this with book options from the database -->
+                    <option value="">Select Book</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Issue Book</button>
+            </form>
+
+            <!-- Form to return a book -->
+            <form action="/return-book" method="POST">
+                <input type="hidden" name="transactionId" required>
+                <button type="submit" class="btn btn-danger">Return Book</button>
+            </form>
+        </div>
+
+        <div class="text-center mb-4">
+            <h2>Membership Management</h2>
+            <!-- Form to add a new membership -->
+            <form action="/add-membership" method="POST" class="mb-4">
+                <input type="text" name="duration" placeholder="Membership Duration (e.g., 1 Year)" required>
+                <button type="submit" class="btn btn-success">Add Membership</button>
+            </form>
+
+            <!-- Form to update an existing membership -->
+            <form action="/update-membership" method="POST">
+                <input type="hidden" name="membershipId" required>
+                <input type="text" name="duration" placeholder="New Membership Duration" required>
+                <button type="submit" class="btn btn-warning">Update Membership</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
